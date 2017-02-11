@@ -13,5 +13,6 @@ ie  cargo run --bin hello_world`
 * [Hello world](./src/bin/hello_world.rs)
 * [Hello name](./src/bin/hello_name.rs)
 * [Primitives](./src/bin/primitives.rs)
+* [Elapsed time](./src/bin/elapsed_time.rs)
 * [Dice rolling](./src/bin/dice_roll.rs)
-* [Palindromes](./src/bin/palindromes.rs)
+* [Palindrome](./src/bin/palindrome.rs)
