@@ -6,7 +6,7 @@ fn main() {
         Ok(n) => {
             println!("Nice to meet you '{}'", name);
             println!("Bytes read {}", n);
-        }
+        },
         Err(error) => println!("error: {}", error),
     }
 }
