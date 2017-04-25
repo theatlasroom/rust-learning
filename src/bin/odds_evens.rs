@@ -3,19 +3,16 @@ extern crate rand;
 
 fn main() {
     print!("Starting\n");
-    let is_odd = |num: u32| -> bool { if (num % 2) > 0 { true } else { false } };
-
-    let mut roll: u32 = 0;
 
     let mut i = 0;
 
     let (mut odd, mut even) = (0,0);
 
     loop {
-        roll = roll_dice();
-        match roll {
-            1 if is_odd(roll) => odd += 1,
-            _ => even += 1,
+        let (roll_type, roll) = roll_dice();
+        match roll_type {
+            DiceRoll::Odd => odd += 1,
+            DiceRoll::Even => even += 1,
         }
 
         print!("New number {:?}\n", roll);
@@ -28,9 +25,25 @@ fn main() {
     print!("odds {:?} vs evens {:?}\n", odd, even);
 }
 
-fn roll_dice() -> u32 {
-    random(6)
+enum DiceRoll {
+    Odd,
+    Even,
 }
+
+fn roll_dice() -> (DiceRoll, usize) {
+    let roll: usize = random(6);
+    let is_odd = |num: usize| -> bool { if (num % 2) > 0 { true } else { false } };
+    if is_odd(roll) {
+        (DiceRoll::Odd, roll)
+    }
+    else {
+        (DiceRoll::Even, roll)
+    }
+}
+
+// fn roll_dice() -> u32 {
+//     random(6)
+// }
 
 // use rand::distributions::{IndependentSample,Range};
 // // alternative roll dice
@@ -40,6 +53,6 @@ fn roll_dice() -> u32 {
 //     between.ind_sample(&mut rng) + 1
 // }
 
-fn random(num: u32) -> u32 {
-    (rand::random::<u32>() % num) + 1
+fn random(num: u8) -> usize {
+    ((rand::random::<u8>() % num) + 1) as usize
 }
